@@ -6,15 +6,11 @@
 | email               | string     | null: false, unique: true |
 | encrypted_password  | string     | null: false               |
 | last-name-kanji     | string     | null: false               |
-| last-name-hiragana  | string     | null: false               |
 | last-name-katakana  | string     | null: false               |
 | first-name-kanji    | string     | null: false               |
-| first-name-hiragana | string     | null: false               |
 | first-name-katakana | string     | null: false               |
-| last-name-hurigana  | string     | null: false               |
-| first-name-hurigana | string     | null: false               |
-| birth-day           | string     | null: false               |
-| user_id             | references | foreign_key :true         |
+| birth-day           | date       | null: false               |
+| user                | references | foreign_key :true         |
 
 ### Association
 - has_many :items
@@ -24,8 +20,8 @@
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
-| user_id     | references | foreign_key: true |
-| item_id     | references | foreign_key: true |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -42,7 +38,7 @@
 | address      | string     | null: false       |
 | building     | string     |                   |
 | phone-number | string     | null: false       |
-| buy_id       | references | foreign_key: true |
+| buy          | references | foreign_key: true |
 
 ### Association
 - has_one :buy
@@ -58,8 +54,8 @@
 | charge_id       | integer       | null: false       |
 | area_id         | integer       | null: false       |
 | shopping-day_id | integer       | null: false       |
-| price           | integer        | null: false       |
-| user_id         | references    | foreign_key: true |
+| price           | integer       | null: false       |
+| user            | references    | foreign_key: true |
 
 ### Association
 - belongs_to :user
