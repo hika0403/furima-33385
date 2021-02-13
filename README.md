@@ -1,24 +1,62 @@
-# README
+## usersテーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column              | Type       | Option                    |
+| ------------------- |----------- | ------------------------- | 
+| nickname            | string     | null :false               |
+| email               | string     | null: false, unique: true |
+| encrypted_password  | string     | null: false               |
+| last_name_kanji     | string     | null: false               |
+| last_name_katakana  | string     | null: false               |
+| first_name_kanji    | string     | null: false               |
+| first_name_katakana | string     | null: false               |
+| birth_day           | date       | null: false               |
+| user                | references | foreign_key :true         |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :buys
 
-* Ruby version
+## buysテーブル
 
-* System dependencies
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :buyer
+- belongs_to :item
 
-* Database creation
+## buyersテーブル
 
-* Database initialization
+| Column       | Type       | Options           |
+| ------------ | ---------- | ----------------- |
+| postal_code  | string     | null: false       |
+| area_id      | integer    | null: false       |
+| town         | string     | null: false       |
+| address      | string     | null: false       |
+| building     | string     |                   |
+| phone_number | string     | null: false       |
+| buy          | references | foreign_key: true |
 
-* How to run the test suite
+### Association
+- belongs_to :buy
 
-* Services (job queues, cache servers, search engines, etc.)
+## itemsテーブル
 
-* Deployment instructions
+| Column          | Type          | Options           |
+| --------------- | ------------- | -----------       |
+| name       | string        | null: false       |
+| text            | text          | null: false       |
+| category_id     | integer       | null: false       |
+| situation_id    | integer       | null: false       |
+| charge_id       | integer       | null: false       |
+| area_id         | integer       | null: false       |
+| shopping_day_id | integer       | null: false       |
+| price           | integer       | null: false       |
+| user            | references    | foreign_key: true |
 
-* ...
+### Association
+- belongs_to :user
+- has_one :buy
