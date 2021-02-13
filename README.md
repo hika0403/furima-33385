@@ -1,46 +1,36 @@
 ## usersテーブル
 
-| Column   | Type   | Option      |
-| -------- |------- | ----------- | 
-| nickname | string | null :false |
-| email    | string | null: false |
-| password | string | null: false |
+| Column              | Type       | Option                    |
+| ------------------- |----------- | ------------------------- | 
+| nickname            | string     | null :false               |
+| email               | string     | null: false, unique: true |
+| encrypted_password  | string     | null: false               |
+| last-name-kanji     | string     | null: false               |
+| last-name-hiragana  | string     | null: false               |
+| last-name-katakana  | string     | null: false               |
+| first-name-kanji    | string     | null: false               |
+| first-name-hiragana | string     | null: false               |
+| first-name-katakana | string     | null: false               |
+| last-name-hurigana  | string     | null: false               |
+| first-name-hurigana | string     | null: false               |
+| birth-day           | string     | null: false               |
+| user_id             | references | foreign_key :true         |
 
 ### Association
 - has_many :items
 - has_many :buys
-- belongs_to :identity
-
-## identitiesテーブル
-
-| Column              | Type       | Options           |
-| ------------------- | ---------- | ----------------- |
-| last-name-kanji     | string     | null: false       |
-| last-name-hiragana  | string     | null: false       |
-| last-name-katakana  | string     | null: false       |
-| first-name-kanji    | string     | null: false       |
-| first-name-hiragana | string     | null: false       |
-| first-name-katakana | string     | null: false       |
-| last-name-hurigana  | string     | null: false       |
-| first-name-hurigana | string     | null: false       |
-| birth-day           | string     | null: false       |
-| user_id             | references | foreign_key :true |
-
-### Association
-- has_one :user
 
 ## buysテーブル
 
 | Column      | Type       | Options           |
 | ----------- | ---------- | ----------------- |
-| credit-card | string     | null: false       |
 | user_id     | references | foreign_key: true |
 | item_id     | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :buyer
-- has_one :item
+- belongs_to :item
 
 ## buyersテーブル
 
@@ -50,6 +40,7 @@
 | prefecture   | string     | null: false       |
 | town         | string     | null: false       |
 | address      | string     | null: false       |
+| building     | string     |                   |
 | phone-number | string     | null: false       |
 | buy_id       | references | foreign_key: true |
 
@@ -60,17 +51,16 @@
 
 | Column          | Type          | Options           |
 | --------------- | ------------- | -----------       |
-| image           | ActiveStorage | null: false       |
 | item-name       | string        | null: false       |
 | text            | text          | null: false       |
-| category        | ActiveHash    | null: false       |
-| situation       | ActiveHash    | null: false       |
-| shopping-charge | ActiveHash    | null: false       |
-| area            | ActiveHash    | null: false       |
-| shopping-day    | ActiveHash    | null: false       |
-| price           | string        | null: false       |
+| category_id     | integer       | null: false       |
+| situation_id    | integer       | null: false       |
+| charge_id       | integer       | null: false       |
+| area_id         | integer       | null: false       |
+| shopping-day_id | integer       | null: false       |
+| price           | integer        | null: false       |
 | user_id         | references    | foreign_key: true |
 
 ### Association
 - belongs_to :user
-- belongs_to :buy
+- has_one :buy
