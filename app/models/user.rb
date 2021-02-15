@@ -13,13 +13,5 @@ class User < ApplicationRecord
       validates :first_name_katakana
     end
   end
-  # with_options presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々]+\z/, message: '全角文字を使用してください' } do
-  #   validates :last_name_kanji
-  #   validates :first_name_kanji
-  # end
-  # with_options presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: '全角（カタカナ）を使用してください' } do
-  #   validates :last_name_katakana
-  #   validates :first_name_katakana
-  # end
   validates :birth_day, presence: true
 end
