@@ -34,12 +34,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
 
 
       t.timestamps null: false
-      t.string :nickname
-      t.string :last_name_kanji
-      t.string :last_name_katakana
-      t.string :first_name_kanji
-      t.string :first_name_katakana
-      t.date :birth_day
+      t.string :nickname,             null: false
+      t.string :last_name_kanji,      null: false
+      t.string :last_name_katakana,   null: false
+      t.string :first_name_kanji,     null: false
+      t.string :first_name_katakana,  null: false
+      t.date :birth_day,              null: false
     end
 
     add_index :users, :email,                unique: true
