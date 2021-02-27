@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :text
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
+    validates :price
     validates :category_id
     validates :situation_id
     validates :charge_id
@@ -11,7 +11,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  validates :price, numericality: true
+  validates :price, numericality: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
 
   belongs_to :user
   has_one_attached :image
