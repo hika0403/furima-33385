@@ -1,10 +1,11 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: :new
+
   def index
-    @items = Item.all
+    # @items = Item.all 次回使用
   end
 
   def new
-    authenticate_user!
     @item = Item.new
   end
 
