@@ -33,30 +33,55 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Text can't be blank"
       end
-      it 'categpry_idが空では登録できない' do
+      it 'category_idが空では登録できない' do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
+      end
+      it 'category_idは1では登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Category must be other than 1"
       end
       it 'situation_idが空では登録できない' do
         @item.situation_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Situation can't be blank"
       end
+      it 'situation_idは1では登録できない' do
+        @item.situation_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Situation must be other than 1"
+      end
       it 'shopping_day_idが空では登録できない' do
         @item.shopping_day_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Shopping day can't be blank"
+      end
+      it 'shopping_day_idは1では登録できない' do
+        @item.shopping_day_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Shopping day must be other than 1"
       end
       it 'area_idが空では登録できない' do
         @item.area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Area can't be blank"
       end
+      it 'area_idは1では登録できない' do
+        @item.area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Area must be other than 1"
+      end
       it 'charge_idが空では登録できない' do
         @item.charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "Charge can't be blank"
+      end
+      it 'charge_idは1では登録できない' do
+        @item.charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Charge must be other than 1"
       end
       it 'priceが空では登録できない' do
         @item.price = ''
@@ -66,7 +91,12 @@ RSpec.describe Item, type: :model do
       it 'piceが300以上9,999,999以下出なければ登録できない' do
         @item.price = 250
         @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is not included in the list'
+        expect(@item.errors.full_messages).to include "Price is not included in the list"
+      end
+      it 'priceは半角数字でなければ登録できない' do
+        @item.price = "２５０"
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is not a number"
       end
       it 'imageが空では登録できない' do
         @item.image = nil
