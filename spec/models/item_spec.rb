@@ -41,7 +41,7 @@ RSpec.describe Item, type: :model do
       it 'category_idは1では登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Category must be other than 1"
+        expect(@item.errors.full_messages).to include 'Category must be other than 1'
       end
       it 'situation_idが空では登録できない' do
         @item.situation_id = ''
@@ -51,7 +51,7 @@ RSpec.describe Item, type: :model do
       it 'situation_idは1では登録できない' do
         @item.situation_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Situation must be other than 1"
+        expect(@item.errors.full_messages).to include 'Situation must be other than 1'
       end
       it 'shopping_day_idが空では登録できない' do
         @item.shopping_day_id = ''
@@ -61,7 +61,7 @@ RSpec.describe Item, type: :model do
       it 'shopping_day_idは1では登録できない' do
         @item.shopping_day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Shopping day must be other than 1"
+        expect(@item.errors.full_messages).to include 'Shopping day must be other than 1'
       end
       it 'area_idが空では登録できない' do
         @item.area_id = ''
@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
       it 'area_idは1では登録できない' do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Area must be other than 1"
+        expect(@item.errors.full_messages).to include 'Area must be other than 1'
       end
       it 'charge_idが空では登録できない' do
         @item.charge_id = ''
@@ -81,7 +81,7 @@ RSpec.describe Item, type: :model do
       it 'charge_idは1では登録できない' do
         @item.charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include "Charge must be other than 1"
+        expect(@item.errors.full_messages).to include 'Charge must be other than 1'
       end
       it 'priceが空では登録できない' do
         @item.price = ''
@@ -91,27 +91,27 @@ RSpec.describe Item, type: :model do
       it 'piceが300以下では登録できない' do
         @item.price = 250
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not included in the list"
+        expect(@item.errors.full_messages).to include 'Price is not included in the list'
       end
       it 'priceが9,999,999以上では登録できない' do
         @item.price = 100_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not included in the list"
+        expect(@item.errors.full_messages).to include 'Price is not included in the list'
       end
       it 'priceは全角数字では登録できない' do
-        @item.price = "２５０"
+        @item.price = '２５０'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
       it 'priceは半角英語では登録できない' do
-        @item.price = "abcd"
+        @item.price = 'abcd'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
       it 'priceは半角英数混合では登録できない' do
-        @item.price = "12ab"
+        @item.price = '12ab'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
       it 'imageが空では登録できない' do
         @item.image = nil
