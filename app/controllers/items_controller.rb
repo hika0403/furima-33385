@@ -27,8 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(item_params)
-    item.update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    item.save
   end
 
   private
