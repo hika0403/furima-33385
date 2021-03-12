@@ -1,6 +1,6 @@
 class OrderBuyer
   include ActiveModel::Model 
-  attr_accessor :postal_code, :prefecture, :town, :address, :building, :phone_number
+  attr_accessor :postal_code, :prefecture, :town, :address, :building, :phone_number, :item_id, :user_id
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
@@ -11,9 +11,7 @@ class OrderBuyer
   end
 
   def save
-    user = User.new
-    item = Item.new
-    Order.create(user_id: user.id, item_id: item.id)
-    Buyer.create(postal_code: postal_code, prefecture: prefecture, town: town, address: address, building: building, phone_number: phone_number, user_id: user.id)
+    order = Order.create(user_id: user_id, item_id: item_id)
+    Buyer.create(postal_code: postal_code, prefecture: prefecture, town: town, address: address, building: building, phone_number: phone_number, order_id: order.id)
   end
 end
