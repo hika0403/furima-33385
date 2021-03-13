@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     if @order_buyer.valid?
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       Payjp::Charge.create(
-        amount: buyer_params[:price],
+        amount: @item.price,
         card: buyer_params[:token],
         currency: 'jpy'
       )
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
 
   def buyer_params
     params.require(:order_buyer).permit(:postal_code, :prefecture, :town, :address, :building, :phone_number).merge(
-      user_id: current_user.id, item_id: params[:item_id], price: Item.find(params[:item_id]).price, token: params[:token]
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end
 
