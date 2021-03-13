@@ -1,6 +1,6 @@
 class OrderBuyer
   include ActiveModel::Model 
-  attr_accessor :postal_code, :prefecture, :town, :address, :building, :phone_number, :item_id, :user_id
+  attr_accessor :postal_code, :prefecture, :town, :address, :building, :phone_number, :item_id, :user_id, :token, :price
 
   with_options presence: true do
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
@@ -8,6 +8,7 @@ class OrderBuyer
     validates :town
     validates :address
     validates :phone_number, format: { with: /\A[0-9]{11}\z/ }
+    validates :token
   end
 
   def save
