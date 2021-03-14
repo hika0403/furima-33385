@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe OrderBuyer, type: :model do
   describe '購入情報の保存' do
     before do
-      @order_buyer = FactoryBot.build(:order_buyer)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.build(:item)
+      image = fixture_file_upload('public/images/test_image.png')
+      @item.save
+      @order_buyer = FactoryBot.build(:order_buyer, user_id: @user.id, item_id: @item.id)
     end
 
     context '購入情報が登録できるとき' do
