@@ -10,12 +10,7 @@ class OrdersController < ApplicationController
   def create
     @order_buyer = OrderBuyer.new(buyer_params)
     if @order_buyer.valid?
-      Payjp.api_key = ENV['PAYJP_SECRET_KEY']
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: buyer_params[:token],
-        currency: 'jpy'
-      )
+      pay_item
       @order_buyer.save
       redirect_to root_path
     else
@@ -37,5 +32,14 @@ class OrdersController < ApplicationController
 
   def move_to_index
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
+  end
+
+  def pay_item
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: buyer_params[:token],
+      currency: 'jpy'
+    )
   end
 end
